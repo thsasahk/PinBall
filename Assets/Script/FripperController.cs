@@ -10,6 +10,9 @@ public class FripperController : MonoBehaviour
     private float defaultAngle=20.0f;
     //弾いた時の傾き
     private float flickAngle=-20.0f;
+    //画面のサイズ
+    private float size;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,8 @@ public class FripperController : MonoBehaviour
 
         //フリッパーの傾きを設定
         SetAngle(this.defaultAngle);
+        //画面のサイズを取得
+        this.size=Screen.width;
     }
 
     // Update is called once per frame
@@ -31,7 +36,7 @@ public class FripperController : MonoBehaviour
         
             for(int i = 0; i < Input.touchCount; i++)
             {
-                if(touches[i].position.x<90&&tag=="LeftFripperTag")
+                if(touches[i].position.x<this.size/2&&tag=="LeftFripperTag")
                 {
                     switch (touches[i].phase)
                     {
@@ -45,7 +50,7 @@ public class FripperController : MonoBehaviour
                     }
                 }
 
-                if(touches[i].position.x>=90&&tag=="RightFripperTag")
+                if(touches[i].position.x>=this.size/2&&tag=="RightFripperTag")
                 {
                     switch (touches[i].phase)
                     {
