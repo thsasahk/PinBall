@@ -28,10 +28,11 @@ public class FripperController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetAngle(defaultAngle);
+        
          if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-
+            //タッチ座標、状態を配列に格納
             Touch[] touches = Input.touches;
         
             for(int i = 0; i < Input.touchCount; i++)
@@ -40,12 +41,9 @@ public class FripperController : MonoBehaviour
                 {
                     switch (touches[i].phase)
                     {
-                        case TouchPhase.Began:
+                        case TouchPhase.Moved:
+                        case TouchPhase.Stationary:
                         SetAngle(flickAngle);
-                        break;
-
-                        case TouchPhase.Ended:
-                        SetAngle(defaultAngle);
                         break;
                     }
                 }
@@ -54,12 +52,9 @@ public class FripperController : MonoBehaviour
                 {
                     switch (touches[i].phase)
                     {
-                        case TouchPhase.Began:
+                        case TouchPhase.Moved:
+                        case TouchPhase.Stationary:
                         SetAngle(flickAngle);
-                        break;
-
-                        case TouchPhase.Ended:
-                        SetAngle(defaultAngle);
                         break;
                     }
                 }
